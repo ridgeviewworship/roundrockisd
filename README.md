@@ -1,221 +1,167 @@
-# colors.js
-[![Build Status](https://travis-ci.org/Marak/colors.js.svg?branch=master)](https://travis-ci.org/Marak/colors.js)
-[![version](https://img.shields.io/npm/v/colors.svg)](https://www.npmjs.org/package/colors)
-[![dependencies](https://david-dm.org/Marak/colors.js.svg)](https://david-dm.org/Marak/colors.js)
-[![devDependencies](https://david-dm.org/Marak/colors.js/dev-status.svg)](https://david-dm.org/Marak/colors.js#info=devDependencies)
+<p align="center"><img src="https://raw.githubusercontent.com/titaniumnetwork-dev/ultraviolet-static/main/uv.png" height="200">
+</p>
 
-Please check out the [roadmap](ROADMAP.md) for upcoming features and releases.  Please open Issues to provide feedback, and check the `develop` branch for the latest bleeding-edge updates.
+<h1 align="center">Ultraviolet-Node</h1>
 
-## get color and style in your node.js console
+<p align="center">The deployable version of Ultraviolet, a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers and more!<br><br></p>
 
-![Demo](https://raw.githubusercontent.com/Marak/colors.js/master/screenshots/colors.png)
+## Quick Deployments
+[![Deploy to Heroku](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/heroku.svg)](https://heroku.com/deploy/?template=https://github.com/titaniumnetwork-dev/Ultraviolet-Node)
+[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/titaniumnetwork-dev/Ultraviolet-Node)
 
-## Installation
+## Features
+- CAPTCHA support along with hCAPTCHA support
+- URL encoding settings to further hide activity when using Ultraviolet
+- Configuration all done on the client-side via service-workers
+- Speed in comparison to other web proxies that fully proxy content
+- Blacklist setting and more for easy hosting
+- Security in mind and leak prevention
+- Frequent updates to improve site support or fix security issues
 
-    npm install colors
+## Supported Sites
+- [Youtube](https://www.youtube.com)
+- [CAPTCHA/hCAPTCHA](https://www.captcha.net)
+- [Spotify](https://spotify.com)
+- [Discord](https://discord.com)
+- [Reddit](https://reddit.com)
+- [GeForce NOW](https://play.geforcenow.com/) (Partially Supported)
+- And more!
 
-## colors and styles!
+## Technologies Used
+- Service Workers
+- HTML, JS, CSS rewriting
+- Parse5
+- Acorn.js
 
-### text colors
+## Used by
+- [Incognito](https://github.com/caracal-js/Incognito), a popular web proxy service with focus on privacy
+- [Holy-Unblocker](https://github.com/titaniumnetwork-dev/Holy-Unblocker), a popular web proxy service focusing on bypassing web filters and more
+- [Hypertabs](titaniumnetwork.org/), a web proxy service using a PWA browser as its frontend
 
-  - black
-  - red
-  - green
-  - yellow
-  - blue
-  - magenta
-  - cyan
-  - white
-  - gray
-  - grey
+## Table of Contents
+- [Installation And Setup](#installation-and-setup)
+- [Basic Guide](#basic-guide)
+- [Replit Setup Guide](#replit-setup-guide)
+- [Comprehensive Guide](#comprehensive-guide)
+- [Configuration](#configuration)
+- [Frontend](#static-files)
+- [Core Scripts](#core-scripts)
 
-### bright text colors
+# Installation and Setup
 
-  - brightRed
-  - brightGreen
-  - brightYellow
-  - brightBlue
-  - brightMagenta
-  - brightCyan
-  - brightWhite
+Installation of Ultraviolet is simple. You can find a Tl;DR of the installation and setup process just below. If you are unfamiliar with the "standard" installation process, look a bit farther down for a more comprehensive installation and setup guide.
 
-### background colors
+## Basic Guide
 
-  - bgBlack
-  - bgRed
-  - bgGreen
-  - bgYellow
-  - bgBlue
-  - bgMagenta
-  - bgCyan
-  - bgWhite
-  - bgGray
-  - bgGrey
-
-### bright background colors
-
-  - bgBrightRed
-  - bgBrightGreen
-  - bgBrightYellow
-  - bgBrightBlue
-  - bgBrightMagenta
-  - bgBrightCyan
-  - bgBrightWhite
-
-### styles
-
-  - reset
-  - bold
-  - dim
-  - italic
-  - underline
-  - inverse
-  - hidden
-  - strikethrough
-
-### extras
-
-  - rainbow
-  - zebra
-  - america
-  - trap
-  - random
-
-
-## Usage
-
-By popular demand, `colors` now ships with two types of usages!
-
-The super nifty way
-
-```js
-var colors = require('colors');
-
-console.log('hello'.green); // outputs green text
-console.log('i like cake and pies'.underline.red) // outputs red underlined text
-console.log('inverse the color'.inverse); // inverses the color
-console.log('OMG Rainbows!'.rainbow); // rainbow
-console.log('Run the trap'.trap); // Drops the bass
-
+```sh
+$ git clone https://github.com/titaniumnetwork-dev/Ultraviolet-Node --recursive
+$ cd Ultraviolet-Node
+$ npm install
+$ npm start
 ```
 
-or a slightly less nifty way which doesn't extend `String.prototype`
+## Replit Setup Guide
 
-```js
-var colors = require('colors/safe');
+To setup on Replit, first click on the "Run on Replit" button. After loading into your repl, click on the green "Run" button. Alternatively, run the following commands:
 
-console.log(colors.green('hello')); // outputs green text
-console.log(colors.red.underline('i like cake and pies')) // outputs red underlined text
-console.log(colors.inverse('inverse the color')); // inverses the color
-console.log(colors.rainbow('OMG Rainbows!')); // rainbow
-console.log(colors.trap('Run the trap')); // Drops the bass
-
+```sh
+$ npm install
+$ chmod +x main.sh
+$ ./main.sh
 ```
 
-I prefer the first way. Some people seem to be afraid of extending `String.prototype` and prefer the second way. 
+You will only have to run the second command once. It just allows `main.sh` to be executed. By running `main.sh`, you will update any submodules and will start the app.
 
-If you are writing good code you will never have an issue with the first approach. If you really don't want to touch `String.prototype`, the second usage will not touch `String` native object.
+**Note**: If you choose not to use `main.sh`, but would rather just run all commands manually, please note that you will have to manually install submodules by running `git update submodules --init`. Without it, `static` will not be installed, and that is a required directory.
 
-## Enabling/Disabling Colors
+## Comprehensive Guide
 
-The package will auto-detect whether your terminal can use colors and enable/disable accordingly. When colors are disabled, the color functions do nothing. You can override this with a command-line flag:
+Below will describe a comprehensive guide to install Ultraviolet on Linux machines.
 
-```bash
-node myapp.js --no-color
-node myapp.js --color=false
+To clone the repository, simply run the following command:
 
-node myapp.js --color
-node myapp.js --color=true
-node myapp.js --color=always
-
-FORCE_COLOR=1 node myapp.js
+```sh
+$ git clone https://github.com/titaniumnetwork-dev/Ultraviolet-Node --recursive
 ```
 
-Or in code:
+The `--recursive` flag will clone the repository and all submodules.
+
+To begin work on the actual setup, cd into the repository. You can do so by running the following command:
+
+```sh
+$ cd Ultraviolet-Node
+```
+
+From here, you can update your submodules and install your dependencies. To do so, run the following command:
+
+```sh
+$ npm install
+```
+
+Finally, to start Ultraviolet, run the following command:
+
+```sh
+$ npm start
+```
+
+You can then find Ultraviolet on `http://127.0.0.1:8080`. If you would like to change the port UV will be running on, edit the last line in `index.mjs`. 
+
+Please note that UV will not function without HTTPS. If you are hosting on Replit or Heroku, this won't be a problem as they provide you with SSL/TLS by default and will automatically apply it to your instance, however if you are attempting to host UV on a different platform, such as a personal server, you **WILL** need to use HTTPS. 
+
+## Configuration
+Configuring Ultraviolet is very simple. Simple descriptions of each configurable option are provided as a comment in the block below. More detailed documentation can be found just below mentioned block.
+
+`uv.config.js`
 
 ```javascript
-var colors = require('colors');
-colors.enable();
-colors.disable();
+self.__uv$config = {
+    prefix: '/sw/', // Proxy url prefix
+    bare: '/bare/', // Bare server location
+    encodeUrl: Ultraviolet.codec.xor.encode, // URL Encoding function
+    decodeUrl: Ultraviolet.codec.xor.decode, // Decode URL function
+    handler: '/uv.handler.js', // Handler script
+    bundle: '/uv.bundle.js', // Bundled script
+    config: '/uv.config.js', // Configuration script
+    sw: '/uv.sw.js', // Service Worker Script
+};
 ```
 
-## Console.log [string substitution](http://nodejs.org/docs/latest/api/console.html#console_console_log_data)
+| Configuration | Options and Explanation |
+| ------------- | ----------------------- |
+| Prefix | The prefix is the prefix that you want users to see. Ex: `https://example.com/service.` The default prefix is `service`. |
+| Bare | Bare Servers can run on directories. For example, if the directory was /bare/ then the bare origin would look like `http://example.org/bare/`. The bare origin is passed to clients. |
+| encodeUrl| EncodeUrl is how you want the URL a proxy site's visitors has to be encoded. Options include `Ultraviolet.codec.base64.encode`, `Ultraviolet.codec.plain.encode`, or `Ultraviolet.codec.xor.encode`. It is recommended that you use `xor` or `base64` as it hides the queries your visitors are searching and visiting.
+| decodeURL | DecodeUrl is how you want the url to be decoded. It is recommended you keep it the same as `encodeUrl`. |
+| Handler | Handler is the path to the UV handler. The default name and path to this file is `static/uv/uv.handler.js`. |
+| Bundle | Bundle is the path to the UV bundle file. The default name and path to this file is `static/uv/uv.bundle.js`. |
+| Config | Config is the path to the UV config file. The default name and path to this file is `static/uv/uv.bundle.js`. |
+| SW | SW is the path to the UV Service Worker script. The default name and path to this file is `static/uv/uv.sw.js`. |
 
-```js
-var name = 'Marak';
-console.log(colors.green('Hello %s'), name);
-// outputs -> 'Hello Marak'
-```
+## Static Files
 
-## Custom themes
+Static files is the frontend for Ultraviolet. A standalone repository for it can be found [here](https://github.com/titaniumnetwork-dev/Ultraviolet-Static).
 
-### Using standard API
+## Core Scripts
 
-```js
+[Configuration](#configuration) mentions a few scripts that make up Ultraviolet. To get documentation for what each of the scripts do, check out the [documentation](https://github.com/titaniumnetwork-dev/Ultraviolet-Core) for them in their standalone repository.
 
-var colors = require('colors');
+# Main Scripts After Building
 
-colors.setTheme({
-  silly: 'rainbow',
-  input: 'grey',
-  verbose: 'cyan',
-  prompt: 'grey',
-  info: 'green',
-  data: 'grey',
-  help: 'cyan',
-  warn: 'yellow',
-  debug: 'blue',
-  error: 'red'
-});
+The client-hooking & service worker scripts required for UV are located in [ultraviolet-scripts](https://github.com/titaniumnetwork-dev/ultraviolet-scripts)
 
-// outputs red text
-console.log("this is an error".error);
+- Scripts
+    - `uv.sw.js` Service worker gateway
+    - `uv.sw-handler.js` - Service worker handler
+    - `uv.bundle.js` Webpack compiled Ultraviolet rewriter
+    - `uv.handler.js` Client-side hooking
+    - `uv.config.js` Configuration
 
-// outputs yellow text
-console.log("this is a warning".warn);
-```
+# Authors
 
-### Using string safe API
+- Caracal.js (Creator of Ultraviolet)
+- Divide (Creator of TOMP)
 
-```js
-var colors = require('colors/safe');
+# Credits
+- https://github.com/tomphttp
 
-// set single property
-var error = colors.red;
-error('this is red');
 
-// set theme
-colors.setTheme({
-  silly: 'rainbow',
-  input: 'grey',
-  verbose: 'cyan',
-  prompt: 'grey',
-  info: 'green',
-  data: 'grey',
-  help: 'cyan',
-  warn: 'yellow',
-  debug: 'blue',
-  error: 'red'
-});
-
-// outputs red text
-console.log(colors.error("this is an error"));
-
-// outputs yellow text
-console.log(colors.warn("this is a warning"));
-
-```
-
-### Combining Colors
-
-```javascript
-var colors = require('colors');
-
-colors.setTheme({
-  custom: ['red', 'underline']
-});
-
-console.log('test'.custom);
-```
-
-*Protip: There is a secret undocumented style in `colors`. If you find the style you can summon him.*
