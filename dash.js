@@ -1,24 +1,31 @@
-var parse = require('../');
-var test = require('tape');
+var optimist = require('../index');
+var test = require('tap').test;
 
 test('-', function (t) {
     t.plan(5);
-    t.deepEqual(parse([ '-n', '-' ]), { n: '-', _: [] });
-    t.deepEqual(parse([ '-' ]), { _: [ '-' ] });
-    t.deepEqual(parse([ '-f-' ]), { f: '-', _: [] });
     t.deepEqual(
-        parse([ '-b', '-' ], { boolean: 'b' }),
+        fix(optimist.parse([ '-n', '-' ])),
+        { n: '-', _: [] }
+    );
+    t.deepEqual(
+        fix(optimist.parse([ '-' ])),
+        { _: [ '-' ] }
+    );
+    t.deepEqual(
+        fix(optimist.parse([ '-f-' ])),
+        { f: '-', _: [] }
+    );
+    t.deepEqual(
+        fix(optimist([ '-b', '-' ]).boolean('b').argv),
         { b: true, _: [ '-' ] }
     );
     t.deepEqual(
-        parse([ '-s', '-' ], { string: 's' }),
+        fix(optimist([ '-s', '-' ]).string('s').argv),
         { s: '-', _: [] }
     );
 });
 
-test('-a -- b', function (t) {
-    t.plan(3);
-    t.deepEqual(parse([ '-a', '--', 'b' ]), { a: true, _: [ 'b' ] });
-    t.deepEqual(parse([ '--a', '--', 'b' ]), { a: true, _: [ 'b' ] });
-    t.deepEqual(parse([ '--a', '--', 'b' ]), { a: true, _: [ 'b' ] });
-});
+function fix (obj) {
+    delete obj.$0;
+    return obj;
+}
